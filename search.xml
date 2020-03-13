@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>3-hexo使用说明</title>
+      <title>Spring的基本配置及注入方式</title>
       <link href="/2017/03/23/Spring%E5%AD%A6%E4%B9%A01/"/>
       <url>/2017/03/23/Spring%E5%AD%A6%E4%B9%A01/</url>
       
@@ -13,14 +13,14 @@
       
       <categories>
           
-          <category> 框架 </category>
+          <category> Java框架 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> spring </tag>
+            <tag> Spring </tag>
             
         </tags>
       
@@ -29,7 +29,7 @@
     
     
     <entry>
-      <title>3-hexo使用说明</title>
+      <title>Spring通知类型</title>
       <link href="/2017/03/23/Spring%E5%AD%A6%E4%B9%A02/"/>
       <url>/2017/03/23/Spring%E5%AD%A6%E4%B9%A02/</url>
       
@@ -38,14 +38,14 @@
       
       <categories>
           
-          <category> 框架 </category>
+          <category> Java框架 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> spring </tag>
+            <tag> Spring </tag>
             
         </tags>
       
