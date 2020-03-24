@@ -311,7 +311,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-24 14:40:34'>2017-03-23 15:13</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-24 22:36:55'>2017-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
@@ -397,10 +397,10 @@
 }</code></pre>
 <hr>
 <h3 id="spring创建对象的方式"><a href="#spring创建对象的方式" class="headerlink" title="spring创建对象的方式"></a>spring创建对象的方式</h3><ol>
-<li>空参构造方式<pre><code class="xml"> &lt;!-- 创建方式1:空参构造创建  --&gt;
- &lt;bean  name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot; &gt;&lt;/bean&gt;</code></pre>
-</li>
+<li>空参构造方式</li>
 </ol>
+<pre><code class="xml">    &lt;!-- 创建方式1:空参构造创建  --&gt;
+    &lt;bean  name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot; &gt;&lt;/bean&gt;</code></pre>
 <hr>
 <ol start="2">
 <li>静态工厂(了解)</li>
@@ -459,35 +459,35 @@ scope=&quot;prototype&quot; init-method=&quot;init&quot; destroy-method=&quot;de
 </ol>
 <hr>
 <ol start="2">
-<li>构造函数注入<pre><code class="xml">&lt;!-- 构造函数注入 --&gt;
+<li>构造函数注入</li>
+</ol>
+<pre><code class="xml">&lt;!-- 构造函数注入 --&gt;
 &lt;!-- name属性: 构造函数的参数名 --&gt;
 &lt;!-- index属性: 构造函数的参数索引 --&gt;
 &lt;!-- type属性: 构造函数的参数类型--&gt;
 &lt;bean name=&quot;user2&quot; class=&quot;cn.itcast.bean.User&quot;&gt;
- &lt;!-- index用于选择参数的位置（即确定调用哪个构造函数） --&gt;
- &lt;constructor-arg name=&quot;name&quot; value=&quot;jerry&quot; index=&quot;0&quot;&gt;
- &lt;/constructor-arg&gt;
- &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;
- &lt;/constructor-arg&gt;
- &lt;!-- type用于确定当调用相同参数位置 ，但类型不同时调用哪个构造函数 --&gt;
- &lt;constructor-arg name=&quot;name&quot; value=&quot;999&quot; index=&quot;0&quot; type=&quot;java.lang.Integer&quot;&gt;
- &lt;/constructor-arg&gt;
- &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;
- &lt;/constructor-arg&gt;
+    &lt;!-- index用于选择参数的位置（即确定调用哪个构造函数） --&gt;
+    &lt;constructor-arg name=&quot;name&quot; value=&quot;jerry&quot; index=&quot;0&quot;&gt;
+    &lt;/constructor-arg&gt;
+    &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;
+    &lt;/constructor-arg&gt;
+    &lt;!-- type用于确定当调用相同参数位置 ，但类型不同时调用哪个构造函数 --&gt;
+    &lt;constructor-arg name=&quot;name&quot; value=&quot;999&quot; index=&quot;0&quot; type=&quot;java.lang.Integer&quot;&gt;
+    &lt;/constructor-arg&gt;
+    &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;
+    &lt;/constructor-arg&gt;
 &lt;/bean&gt;</code></pre>
-</li>
-</ol>
 <hr>
 <ol start="3">
-<li>p名称空间注入<pre><code class="xml"> &lt;!-- p名称空间注入, 走set方法
-     1.导入P名称空间 xmlns:p=&quot;http://www.springframework.org/schema/p&quot; 
-     2.使用p:属性完成注入 |-值类型: p:属性名=&quot;值&quot; |-对象类型: p:属性名-ref=&quot;bean名称&quot;
-  --&gt;
- &lt;bean name=&quot;user3&quot; class=&quot;cn.itcast.bean.User&quot; p:name=&quot;jack&quot;
-     p:age=&quot;20&quot; p:car-ref=&quot;car&quot;&gt;
- &lt;/bean&gt;</code></pre>
-</li>
+<li>p名称空间注入</li>
 </ol>
+<pre><code class="xml">    &lt;!-- p名称空间注入, 走set方法
+        1.导入P名称空间 xmlns:p=&quot;http://www.springframework.org/schema/p&quot; 
+        2.使用p:属性完成注入 |-值类型: p:属性名=&quot;值&quot; |-对象类型: p:属性名-ref=&quot;bean名称&quot;
+     --&gt;
+    &lt;bean name=&quot;user3&quot; class=&quot;cn.itcast.bean.User&quot; p:name=&quot;jack&quot;
+        p:age=&quot;20&quot; p:car-ref=&quot;car&quot;&gt;
+    &lt;/bean&gt;</code></pre>
 <hr>
 <ol start="4">
 <li>spel注入</li>
@@ -562,7 +562,7 @@ scope=&quot;prototype&quot; init-method=&quot;init&quot; destroy-method=&quot;de
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.5k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
     <p><span class="copy-title">发布时间:</span>2017-03-23, 15:13:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-24, 14:40:34</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 22:36:55</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2017/03/23/Spring%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F/" title="Spring的基本配置及注入方式">http://yoursite.com/2017/03/23/Spring%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
