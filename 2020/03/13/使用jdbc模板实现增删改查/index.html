@@ -180,7 +180,7 @@
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="5">
-<input type="hidden" id="yelog_site_word_count" value="5k">
+<input type="hidden" id="yelog_site_word_count" value="5.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -218,15 +218,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a class="color5">SpringMVC</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a class="color5">Java</a>
     </li>
     
     <li class="article-tag-list-item">
         <a class="color5">对象封装</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">SpringMVC</a>
     </li>
     
     <div class="clearfix"></div>
@@ -251,14 +251,6 @@
             <span class="post-date" title="2017-03-23 15:13:47">2017/03/23</span>
         </a>
         
-        <a id="top" class="Java框架 "
-           href="/2017/03/23/%E6%95%B4%E5%90%88MyBatis%E7%9A%84%E5%9B%9B%E5%A4%A7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"
-           data-tag="Spring,SpringMVC"
-           data-author="" >
-            <span class="post-title" title="SpringMVC四大配置文件整合">SpringMVC四大配置文件整合</span>
-            <span class="post-date" title="2017-03-23 15:13:47">2017/03/23</span>
-        </a>
-        
         <a  class="Java框架 "
            href="/2020/03/13/%E4%BD%BF%E7%94%A8jdbc%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"
            data-tag="Spring"
@@ -273,6 +265,14 @@
            data-author="" >
             <span class="post-title" title="Java创建一个对象内存图">Java创建一个对象内存图</span>
             <span class="post-date" title="2017-03-14 18:34:47">2017/03/14</span>
+        </a>
+        
+        <a id="top" class="Java框架 "
+           href="/2017/03/23/%E6%95%B4%E5%90%88MyBatis%E7%9A%84%E5%9B%9B%E5%A4%A7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/"
+           data-tag="Spring,SpringMVC"
+           data-author="" >
+            <span class="post-title" title="SpringMVC四大配置文件整合">SpringMVC四大配置文件整合</span>
+            <span class="post-date" title="2017-03-23 15:13:47">2017/03/23</span>
         </a>
         
     </nav>
@@ -316,7 +316,7 @@
     </div>
     <div class="article-meta">
         
-        <span>字数:1k</span>
+        <span>字数:1.1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -362,13 +362,205 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用jdbc模板实现增删改查"><a href="#使用jdbc模板实现增删改查" class="headerlink" title="使用jdbc模板实现增删改查"></a>使用jdbc模板实现增删改查</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> JdbcTemplate jt;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(User u)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"insert into t_user values(null,?)"</span>;</span><br><span class="line">		jt.update(sql, u.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"delete from t_user where id = ? "</span>;</span><br><span class="line">		jt.update(sql, id);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(User u)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"update  t_user set name = ? where id=? "</span>;</span><br><span class="line">		jt.update(sql, u.getName(), u.getId());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> User <span class="title">getById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"select * from t_user where id = ? "</span>;</span><br><span class="line">		<span class="keyword">return</span> jt.queryForObject(sql, <span class="keyword">new</span> RowMapper&lt;User&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> User <span class="title">mapRow</span><span class="params">(ResultSet rs, <span class="keyword">int</span> arg1)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">				User u = <span class="keyword">new</span> User();</span><br><span class="line">				u.setId(rs.getInt(<span class="string">"id"</span>));</span><br><span class="line">				u.setName(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">				<span class="keyword">return</span> u;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;, id);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotalCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"select count(*) from t_user "</span>;</span><br><span class="line">		Integer count = jt.queryForObject(sql, Integer<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"select * from t_user"</span>;</span><br><span class="line">		List&lt;User&gt; list = jt.query(sql, <span class="keyword">new</span> RowMapper&lt;User&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> User <span class="title">mapRow</span><span class="params">(ResultSet rs, <span class="keyword">int</span> arg1)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">				User u = <span class="keyword">new</span> User();</span><br><span class="line">				u.setId(rs.getInt(<span class="string">"id"</span>));</span><br><span class="line">				u.setName(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">				<span class="keyword">return</span> u;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> JdbcTemplate <span class="title">getJt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> jt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJt</span><span class="params">(JdbcTemplate jt)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.jt = jt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="使用jdbc模板实现增删改查"><a href="#使用jdbc模板实现增删改查" class="headerlink" title="使用jdbc模板实现增删改查"></a>使用jdbc模板实现增删改查</h2><pre><code class="java">public class UserDaoImpl implements UserDao {
+    private JdbcTemplate jt;
 
-<h2 id="xml配置文件"><a href="#xml配置文件" class="headerlink" title="xml配置文件"></a>xml配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans </span></span></span><br><span class="line"><span class="tag"><span class="string">	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd "</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 指定spring读取db.properties配置 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:property-placeholder</span></span></span><br><span class="line"><span class="tag">		<span class="attr">location</span>=<span class="string">"classpath:db.properties"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 1.将连接池放入spring容器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"dataSource"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.jdbcUrl&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driverClass&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.user&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 2.将JDBCTemplate放入spring容器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"jdbcTemplate"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 3.将UserDao放入spring容器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"cn.itcast.a_jdbctemplate.UserDaoImpl"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jt"</span> <span class="attr">ref</span>=<span class="string">"jdbcTemplate"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    @Override
+    public void save(User u) {
+        String sql = &quot;insert into t_user values(null,?)&quot;;
+        jt.update(sql, u.getName());
+    }
 
+    @Override
+    public void delete(Integer id) {
+        String sql = &quot;delete from t_user where id = ? &quot;;
+        jt.update(sql, id);
+    }
+
+    @Override
+    public void update(User u) {
+        String sql = &quot;update  t_user set name = ? where id=? &quot;;
+        jt.update(sql, u.getName(), u.getId());
+    }
+
+    @Override
+    public User getById(Integer id) {
+        String sql = &quot;select * from t_user where id = ? &quot;;
+        return jt.queryForObject(sql, new RowMapper&lt;User&gt;() {
+            @Override
+            public User mapRow(ResultSet rs, int arg1) throws SQLException {
+                User u = new User();
+                u.setId(rs.getInt(&quot;id&quot;));
+                u.setName(rs.getString(&quot;name&quot;));
+                return u;
+            }
+        }, id);
+    }
+
+    @Override
+    public int getTotalCount() {
+        String sql = &quot;select count(*) from t_user &quot;;
+        Integer count = jt.queryForObject(sql, Integer.class);
+        return count;
+    }
+
+    @Override
+    public List&lt;User&gt; getAll() {
+        String sql = &quot;select * from t_user&quot;;
+        List&lt;User&gt; list = jt.query(sql, new RowMapper&lt;User&gt;() {
+            @Override
+            public User mapRow(ResultSet rs, int arg1) throws SQLException {
+                User u = new User();
+                u.setId(rs.getInt(&quot;id&quot;));
+                u.setName(rs.getString(&quot;name&quot;));
+                return u;
+            }
+        });
+        return list;
+    }
+
+    public JdbcTemplate getJt() {
+        return jt;
+    }
+
+    public void setJt(JdbcTemplate jt) {
+        this.jt = jt;
+    }
+
+}</code></pre>
+<h2 id="xml配置文件"><a href="#xml配置文件" class="headerlink" title="xml配置文件"></a>xml配置文件</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd &quot;&gt;
+
+    &lt;!-- 指定spring读取db.properties配置 --&gt;
+    &lt;context:property-placeholder
+        location=&quot;classpath:db.properties&quot; /&gt;
+
+    &lt;!-- 1.将连接池放入spring容器 --&gt;
+    &lt;bean name=&quot;dataSource&quot;
+        class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;property name=&quot;jdbcUrl&quot; value=&quot;${jdbc.jdbcUrl}&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;${jdbc.driverClass}&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;user&quot; value=&quot;${jdbc.user}&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+
+    &lt;!-- 2.将JDBCTemplate放入spring容器 --&gt;
+    &lt;bean name=&quot;jdbcTemplate&quot;
+        class=&quot;org.springframework.jdbc.core.JdbcTemplate&quot;&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- 3.将UserDao放入spring容器 --&gt;
+    &lt;bean name=&quot;userDao&quot; class=&quot;cn.itcast.a_jdbctemplate.UserDaoImpl&quot;&gt;
+        &lt;property name=&quot;jt&quot; ref=&quot;jdbcTemplate&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+
+&lt;/beans&gt;</code></pre>
 <hr>
-<h4 id="在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super-getJdbcTemplate-），如下："><a href="#在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super-getJdbcTemplate-），如下：" class="headerlink" title="在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super.getJdbcTemplate()），如下："></a>在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super.getJdbcTemplate()），如下：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">extends</span> <span class="title">JdbcDaoSupport</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(User u)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"insert into t_user values(null,?)"</span>;</span><br><span class="line">		<span class="keyword">super</span>.getJdbcTemplate().update(sql, u.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"delete from t_user where id = ? "</span>;</span><br><span class="line">		<span class="keyword">super</span>.getJdbcTemplate().update(sql, id);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(User u)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"update  t_user set name = ? where id=? "</span>;</span><br><span class="line">		<span class="keyword">super</span>.getJdbcTemplate().update(sql, u.getName(), u.getId());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> User <span class="title">getById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"select * from t_user where id = ? "</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.getJdbcTemplate().queryForObject(sql, <span class="keyword">new</span> RowMapper&lt;User&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> User <span class="title">mapRow</span><span class="params">(ResultSet rs, <span class="keyword">int</span> arg1)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">				User u = <span class="keyword">new</span> User();</span><br><span class="line">				u.setId(rs.getInt(<span class="string">"id"</span>));</span><br><span class="line">				u.setName(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">				<span class="keyword">return</span> u;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;, id);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotalCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"select count(*) from t_user "</span>;</span><br><span class="line">		Integer count = <span class="keyword">super</span>.getJdbcTemplate().queryForObject(sql, Integer<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String sql = <span class="string">"select * from t_user"</span>;</span><br><span class="line">		List&lt;User&gt; list = <span class="keyword">super</span>.getJdbcTemplate().query(sql, <span class="keyword">new</span> RowMapper&lt;User&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> User <span class="title">mapRow</span><span class="params">(ResultSet rs, <span class="keyword">int</span> arg1)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">				User u = <span class="keyword">new</span> User();</span><br><span class="line">				u.setId(rs.getInt(<span class="string">"id"</span>));</span><br><span class="line">				u.setName(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">				<span class="keyword">return</span> u;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="修改xml配置文件"><a href="#修改xml配置文件" class="headerlink" title="修改xml配置文件"></a>修改xml配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string">     http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">      http://www.springframework.org/schema/context/spring-context-4.2.xsd "</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 指定spring读取db.properties配置 --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:property-placeholder</span></span></span><br><span class="line"><span class="tag">		<span class="attr">location</span>=<span class="string">"classpath:db.properties"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 1.将连接池放入spring容器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"dataSource"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.jdbcUrl&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driverClass&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.user&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 2.将JDBCTemplate放入spring容器 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 	&lt;bean name="jdbcTemplate" --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 		class="org.springframework.jdbc.core.JdbcTemplate"&gt; --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 		&lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt; --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 	&lt;/bean&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 3.将UserDao放入spring容器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"cn.itcast.a_jdbctemplate.UserDaoImpl"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- &lt;property name="jt" ref="jdbcTemplate"&gt;&lt;/property&gt; --&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 根据连接池创建JDBC模板 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super-getJdbcTemplate-），如下："><a href="#在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super-getJdbcTemplate-），如下：" class="headerlink" title="在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super.getJdbcTemplate()），如下："></a>在UserDaoImpl使用继承JdbcDaoSupport，即根据连接池创建JDBC模板，即可不需要手动准备JDBC模板，’从父类方法中获得即可（super.getJdbcTemplate()），如下：</h4><pre><code class="java">public class UserDaoImpl extends JdbcDaoSupport implements UserDao {
+
+    @Override
+    public void save(User u) {
+        String sql = &quot;insert into t_user values(null,?)&quot;;
+        super.getJdbcTemplate().update(sql, u.getName());
+    }
+
+    @Override
+    public void delete(Integer id) {
+        String sql = &quot;delete from t_user where id = ? &quot;;
+        super.getJdbcTemplate().update(sql, id);
+    }
+
+    @Override
+    public void update(User u) {
+        String sql = &quot;update  t_user set name = ? where id=? &quot;;
+        super.getJdbcTemplate().update(sql, u.getName(), u.getId());
+    }
+
+    @Override
+    public User getById(Integer id) {
+        String sql = &quot;select * from t_user where id = ? &quot;;
+        return super.getJdbcTemplate().queryForObject(sql, new RowMapper&lt;User&gt;() {
+            @Override
+            public User mapRow(ResultSet rs, int arg1) throws SQLException {
+                User u = new User();
+                u.setId(rs.getInt(&quot;id&quot;));
+                u.setName(rs.getString(&quot;name&quot;));
+                return u;
+            }
+        }, id);
+    }
+
+    @Override
+    public int getTotalCount() {
+        String sql = &quot;select count(*) from t_user &quot;;
+        Integer count = super.getJdbcTemplate().queryForObject(sql, Integer.class);
+        return count;
+    }
+
+    @Override
+    public List&lt;User&gt; getAll() {
+        String sql = &quot;select * from t_user&quot;;
+        List&lt;User&gt; list = super.getJdbcTemplate().query(sql, new RowMapper&lt;User&gt;() {
+            @Override
+            public User mapRow(ResultSet rs, int arg1) throws SQLException {
+                User u = new User();
+                u.setId(rs.getInt(&quot;id&quot;));
+                u.setName(rs.getString(&quot;name&quot;));
+                return u;
+            }
+        });
+        return list;
+    }
+
+}</code></pre>
+<h2 id="修改xml配置文件"><a href="#修改xml配置文件" class="headerlink" title="修改xml配置文件"></a>修改xml配置文件</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+     http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-4.2.xsd &quot;&gt;
+
+    &lt;!-- 指定spring读取db.properties配置 --&gt;
+
+    &lt;context:property-placeholder
+        location=&quot;classpath:db.properties&quot; /&gt;
+
+    &lt;!-- 1.将连接池放入spring容器 --&gt;
+    &lt;bean name=&quot;dataSource&quot;
+        class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;property name=&quot;jdbcUrl&quot; value=&quot;${jdbc.jdbcUrl}&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;${jdbc.driverClass}&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;user&quot; value=&quot;${jdbc.user}&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+
+    &lt;!-- 2.将JDBCTemplate放入spring容器 --&gt;
+&lt;!--     &lt;bean name=&quot;jdbcTemplate&quot; --&gt;
+&lt;!--         class=&quot;org.springframework.jdbc.core.JdbcTemplate&quot;&gt; --&gt;
+&lt;!--         &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt; --&gt;
+&lt;!--     &lt;/bean&gt; --&gt;
+
+    &lt;!-- 3.将UserDao放入spring容器 --&gt;
+    &lt;bean name=&quot;userDao&quot; class=&quot;cn.itcast.a_jdbctemplate.UserDaoImpl&quot;&gt;
+        &lt;!-- &lt;property name=&quot;jt&quot; ref=&quot;jdbcTemplate&quot;&gt;&lt;/property&gt; --&gt;
+        &lt;!-- 根据连接池创建JDBC模板 --&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+
+&lt;/beans&gt;</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 516802581@qq.com </span>
     </div>
@@ -382,7 +574,7 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>使用jdbc模板实现增删改查</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1k</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.1k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="MisayaQ">MisayaQ</a></p>
     <p><span class="copy-title">发布时间:</span>2020-03-13, 22:36:10</p>
     <p><span class="copy-title">最后更新:</span>2020-03-14, 20:37:27</p>
@@ -469,7 +661,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#Spring','#SpringMVC','#Java','#对象封装',],
+            'data': ['#Spring','#Java','#对象封装','#SpringMVC',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
