@@ -311,7 +311,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-24 22:36:55'>2017-03-23 15:13</time>
+        创建时间:<time class="date" title='更新时间: 2020-03-24 22:44:04'>2017-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
@@ -442,21 +442,21 @@ scope=&quot;prototype&quot; init-method=&quot;init&quot; destroy-method=&quot;de
 &lt;import resource=&quot;cn/itcast/b_create/applicationContext.xml&quot;/&gt;</code></pre>
 <hr>
 <h2 id="Spring属性注入"><a href="#Spring属性注入" class="headerlink" title="Spring属性注入"></a>Spring属性注入</h2><ol>
-<li>set方法注入<pre><code class="xml">&lt;!-- set方式注入: --&gt;
+<li>set方法注入</li>
+</ol>
+<pre><code class="xml">&lt;!-- set方式注入: --&gt;
 &lt;bean  name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot; &gt;
 &lt;!-- 值类型注入：为User对象中名为name的属性注入tom为值 --&gt;
- &lt;property name=&quot;name&quot; value=&quot;tom&quot;&gt;&lt;/property&gt;
- &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
- &lt;!-- 引用类型注入：为car属性注入下方配置的car对象 --&gt;
- &lt;property name=&quot;car&quot; ref=&quot;car&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;tom&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
+    &lt;!-- 引用类型注入：为car属性注入下方配置的car对象 --&gt;
+    &lt;property name=&quot;car&quot; ref=&quot;car&quot;&gt;&lt;/property&gt;
 &lt;/bean&gt;
 &lt;!-- 将Car对象配置到容器中  --&gt;
 &lt;bean name=&quot;car&quot; class=&quot;cn.itcast.bean.Car&quot;&gt;
- &lt;property name=&quot;name&quot; value=&quot;兰博基尼&quot;&gt;&lt;/property&gt;
- &lt;property name=&quot;color&quot; value=&quot;黄色&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;兰博基尼&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;color&quot; value=&quot;黄色&quot;&gt;&lt;/property&gt;
 &lt;/bean&gt;</code></pre>
-</li>
-</ol>
 <hr>
 <ol start="2">
 <li>构造函数注入</li>
@@ -562,7 +562,7 @@ scope=&quot;prototype&quot; init-method=&quot;init&quot; destroy-method=&quot;de
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.5k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
     <p><span class="copy-title">发布时间:</span>2017-03-23, 15:13:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-24, 22:36:55</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-24, 22:44:04</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2017/03/23/Spring%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F/" title="Spring的基本配置及注入方式">http://yoursite.com/2017/03/23/Spring%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
