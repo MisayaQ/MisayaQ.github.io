@@ -375,12 +375,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-04-02 14:44:59'>2020-04-02 14:34</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-02 14:55:31'>2020-04-02 14:34</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:685</span>
+        <span>字数:688</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -433,10 +433,10 @@
 <li>为方法上锁，当定义方法不想被子类修改时可以采取此方法。</li>
 <li>提高执行效率，编译器加载内嵌机制。</li>
 </ol>
-<h2 id="static关键字："><a href="#static关键字：" class="headerlink" title="static关键字："></a>static关键字：</h2><ul>
+<h2 id="static关键字："><a href="#static关键字：" class="headerlink" title="static关键字："></a>static关键字：</h2><ol>
 <li>被static修饰的变量/方法属于类变量/类方法，可以通过类名.变量名/类名.方法名直接引用，不需要new出来一个类来。  </li>
 <li>static关键字修饰变量时，会使该变量在类加载时就会被初始化，不会因为对象的创建再次被加载，当变量static修饰时就代表该变量只会被初始化一次。JVM只为静态分配一次内存，在加载类的过程中完成静态变量的内存分配，可用类名直接访问（方便），当然也可以通过对象来访问（但是这是不推荐的）。</li>
-</ul>
+</ol>
 <p>好处：</p>
 <ol>
 <li>不同的类有自己的静态资源，这可以实现静态资源分类。比如和数学相关的静态资源放在java.lang.Math中，和日历相关的静态资源放在java.util.Calendar中，这样就很清晰了</li>
@@ -445,8 +445,8 @@
 </ol>
 <p>注意事项：</p>
 <ol>
-<li>静态不能访问非静态<br>因为在内存当中是先有静态内容，后有非静态内容。</li>
-<li>静态方法当中不能用this<br>this代表当前对象，通过谁调用的方法，谁就是当前对象，而static静态资源由类直接方法。</li>
+<li>静态不能访问非静态<br>&emsp;因为在内存当中是先有静态内容，后有非静态内容。</li>
+<li>静态方法当中不能用this<br>&emsp;this代表当前对象，通过谁调用的方法，谁就是当前对象，而static静态资源由类直接访问。</li>
 </ol>
 <p>静态代码块：<br>特点:</p>
 <ol>
@@ -469,10 +469,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>static关键字和final关键字</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">685</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">688</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
     <p><span class="copy-title">发布时间:</span>2020-04-02, 14:34:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-02, 14:44:59</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-02, 14:55:31</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/02/%E8%AE%B2%E8%AE%B2%20static%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%20final%20%E5%85%B3%E9%94%AE%E5%AD%97/" title="static关键字和final关键字">http://yoursite.com/2020/04/02/%E8%AE%B2%E8%AE%B2%20static%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%20final%20%E5%85%B3%E9%94%AE%E5%AD%97/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
