@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Spring的基本配置及注入方式 | 家岐的技术博客</title>
-  <meta name="keywords" content=" Spring ">
-  <meta name="description" content="Spring的基本配置及注入方式 | 家岐的技术博客">
+  <title>static关键字和final关键字 | 家岐的技术博客</title>
+  <meta name="keywords" content=" 每天一道面试题 ">
+  <meta name="description" content="static关键字和final关键字 | 家岐的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="final关键字： final修饰的类不可以被继承 final修饰的方法不能被子类重写，但是可以被继承。 final修饰的的变量不能被修改基本数据类型：值不能被修改引用数据类型：对象，数组本身可以修改，但是指向该对象的地址值引用不能被修改。（java中的引用数据类型有3种:类class,数组array,接口interface）类的成员变量：则必须当场赋值，否则编译会报错。好处： 为方法上锁，当定义">
 <meta property="og:type" content="article">
@@ -352,9 +352,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Spring基本配置和注入方式" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-讲讲 static 关键字和 final 关键字" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Spring的基本配置及注入方式</h1>
+        <h1 class="article-title">static关键字和final关键字</h1>
     
     <div class="article-meta">
         
@@ -362,26 +362,26 @@
         
         <span class="book">
             
-                <a  data-rel="Java框架">Java框架</a>
+                <a  data-rel="Java面试题">Java面试题</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a class="color2">Spring</a>
+            <a class="color3">每天一道面试题</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-03-27 10:22:18'>2020-03-23 15:13</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-02 14:21:26'>2020-04-02 18:34</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.5k</span>
+        <span>字数:685</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -411,7 +411,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#xml文件的配置"><span class="toc-text">xml文件的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用Spring"><span class="toc-text">调用Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#spring创建对象的方式"><span class="toc-text">spring创建对象的方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分模块配置"><span class="toc-text">分模块配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring属性注入"><span class="toc-text">Spring属性注入</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#final关键字："><span class="toc-text">final关键字：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static关键字："><span class="toc-text">static关键字：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -427,189 +427,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="xml文件的配置"><a href="#xml文件的配置" class="headerlink" title="xml文件的配置"></a>xml文件的配置</h2><pre><code class="xml">    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-    &lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-        xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans 
-        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd &quot;&gt;
-
-        &lt;!-- 将User对象交给spring容器管理 --&gt;
-        &lt;!-- Bean元素:使用该元素描述需要spring容器管理的对象
-         class属性:被管理对象的完整类名. 
-         name属性:给被管理的对象起个名字.获得对象时根据该名称获得对象. 
-                    可以重复.可以使用特殊字符.
-         id属性: 与name属性一模一样. 
-                     名称不可重复.不能使用特殊字符.
-          结论: 尽量使用name属性. --&gt;
-          &lt;bean name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot;&gt;
-
-          &lt;/bean&gt;
-    &lt;/beans&gt;</code></pre>
-<hr>
-<h2 id="调用Spring"><a href="#调用Spring" class="headerlink" title="调用Spring"></a>调用Spring</h2><pre><code class="java">public class Demo {
-    @Test
-    public void fun1() {
-        //1. 创建容器对象
-        //ClassPathXmlApplicationContext--从类路径下加载配置文件
-        ApplicationContext ac = 
-        new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
-
-        //2.向容器要User对象
-        User u = (User) ac.getBean(&quot;user&quot;);
-        //3. 打印User对象
-        System.out.println(u);
-    }
-}</code></pre>
-<hr>
-<h3 id="spring创建对象的方式"><a href="#spring创建对象的方式" class="headerlink" title="spring创建对象的方式"></a>spring创建对象的方式</h3><ol>
-<li>空参构造方式</li>
+        <h2 id="final关键字："><a href="#final关键字：" class="headerlink" title="final关键字："></a>final关键字：</h2><ol>
+<li>final修饰的类不可以被继承</li>
+<li>final修饰的方法不能被子类重写，但是可以被继承。</li>
+<li>final修饰的的变量不能被修改<br>基本数据类型：值不能被修改<br>引用数据类型：对象，数组本身可以修改，但是指向该对象的地址值引用不能被修改。（java中的引用数据类型有3种:类class,数组array,接口interface）<br>类的成员变量：则必须当场赋值，否则编译会报错。<br>好处：</li>
+<li>为方法上锁，当定义方法不想被子类修改时可以采取此方法。</li>
+<li>提高执行效率，编译器加载内嵌机制。</li>
 </ol>
-<pre><code class="xml">    &lt;!-- 创建方式1:空参构造创建  --&gt;
-    &lt;bean  name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot; &gt;&lt;/bean&gt;</code></pre>
-<hr>
-<ol start="2">
-<li>静态工厂(了解)</li>
+<h2 id="static关键字："><a href="#static关键字：" class="headerlink" title="static关键字："></a>static关键字：</h2><ul>
+<li>被static修饰的变量/方法属于类变量/类方法，可以通过类名.变量名/类名.方法名直接引用，不需要new出来一个类来。  </li>
+<li>static关键字修饰变量时，会使该变量在类加载时就会被初始化，不会因为对象的创建再次被加载，当变量static修饰时就代表该变量只会被初始化一次。JVM只为静态分配一次内存，在加载类的过程中完成静态变量的内存分配，可用类名直接访问（方便），当然也可以通过对象来访问（但是这是不推荐的）。</li>
+</ul>
+<p>好处：</p>
+<ol>
+<li>不同的类有自己的静态资源，这可以实现静态资源分类。比如和数学相关的静态资源放在java.lang.Math中，和日历相关的静态资源放在java.util.Calendar中，这样就很清晰了</li>
+<li>避免重名。不同的类之间有重名的静态变量名、静态方法名也是很正常的，如果所有的都放在一起不可避免的一个问题就是名字重复，这时候怎么办？分类放置就好了。</li>
+<li>避免静态资源类无限膨胀。</li>
 </ol>
-<pre><code class="java">    public static User createUser() {
-        System.out.println(&quot;静态工厂创建User&quot;);
-        return new User();
-    }</code></pre>
-<pre><code class="xml">    &lt;!-- 创建方式2:静态工厂创建 调用UserFactory的createUser方法
-    创建名为user2的对象，放入容器 --&gt;
-    &lt;bean name=&quot;user2&quot; class=&quot;cn.itcast.b_create.UserFactory&quot;
-        factory-method=&quot;createUser&quot;&gt;&lt;/bean&gt;</code></pre>
-<hr>
-<ol start="3">
-<li>实例工厂(了解)</li>
+<p>注意事项：</p>
+<ol>
+<li>静态不能访问非静态<br>因为在内存当中是先有静态内容，后有非静态内容。</li>
+<li>静态方法当中不能用this<br>this代表当前对象，通过谁调用的方法，谁就是当前对象，而static静态资源由类直接方法。</li>
 </ol>
-<pre><code class="java">    public User createUser2() {
-        System.out.println(&quot;实例工厂创建User&quot;);
-        return new User();
-    }</code></pre>
-<pre><code class="xml">    &lt;!-- 创建方式3:实例工厂创建 调用UserFactory对象的createUser2方法
-    创建名为user3的对象.放入容器 --&gt;
-    &lt;bean name=&quot;user3&quot; factory-bean=&quot;userFactory&quot;
-        factory-method=&quot;createUser2&quot;&gt;&lt;/bean&gt;
-
-    &lt;bean name=&quot;userFactory&quot; class=&quot;cn.itcast.b_create.UserFactory&quot;&gt;&lt;/bean&gt;</code></pre>
-<hr>
-<ol start="4">
-<li>生命周期属性</li>
+<p>静态代码块：<br>特点:</p>
+<ol>
+<li>当第一次用到本类时，静态代码块执行唯一的一次。</li>
+<li>静态内容总是优先于非静态，所以静态代码块比构造方法先执行。</li>
+<li>静态代码块是严格按照父类静态代码块-&gt;子类静态代码块的顺序加载的，且只加载一次。</li>
 </ol>
-<pre><code class="xml">&lt;!-- init-method：配置一个方法作为生命周期初始化方法.
-spring会在对象创建之后立即调用 --&gt;
-&lt;!--destory-method：配置一个方法作为生命周期的销毁方法.
-spring容器在关闭并销毁所有容器中的对象之前调用. --&gt;
-&lt;bean name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot; 
-scope=&quot;prototype&quot; init-method=&quot;init&quot; destroy-method=&quot;destory&quot;&gt;&lt;/bean&gt;</code></pre>
-<hr>
-<h2 id="分模块配置"><a href="#分模块配置" class="headerlink" title="分模块配置"></a>分模块配置</h2><pre><code class="xml">&lt;!-- 导入其他spring配置文件 --&gt;
-&lt;import resource=&quot;cn/itcast/b_create/applicationContext.xml&quot;/&gt;</code></pre>
-<hr>
-<h2 id="Spring属性注入"><a href="#Spring属性注入" class="headerlink" title="Spring属性注入"></a>Spring属性注入</h2><ol>
-<li>set方法注入</li>
-</ol>
-<pre><code class="xml">&lt;!-- set方式注入: --&gt;
-&lt;bean  name=&quot;user&quot; class=&quot;cn.itcast.bean.User&quot; &gt;
-&lt;!-- 值类型注入：为User对象中名为name的属性注入tom为值 --&gt;
-    &lt;property name=&quot;name&quot; value=&quot;tom&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
-    &lt;!-- 引用类型注入：为car属性注入下方配置的car对象 --&gt;
-    &lt;property name=&quot;car&quot; ref=&quot;car&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-&lt;!-- 将Car对象配置到容器中  --&gt;
-&lt;bean name=&quot;car&quot; class=&quot;cn.itcast.bean.Car&quot;&gt;
-    &lt;property name=&quot;name&quot; value=&quot;兰博基尼&quot;&gt;&lt;/property&gt;
-    &lt;property name=&quot;color&quot; value=&quot;黄色&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;</code></pre>
-<hr>
-<ol start="2">
-<li>构造函数注入</li>
-</ol>
-<pre><code class="xml">&lt;!-- 构造函数注入 --&gt;
-&lt;!-- name属性: 构造函数的参数名 --&gt;
-&lt;!-- index属性: 构造函数的参数索引 --&gt;
-&lt;!-- type属性: 构造函数的参数类型--&gt;
-&lt;bean name=&quot;user2&quot; class=&quot;cn.itcast.bean.User&quot;&gt;
-    &lt;!-- index用于选择参数的位置（即确定调用哪个构造函数） --&gt;
-    &lt;constructor-arg name=&quot;name&quot; value=&quot;jerry&quot; index=&quot;0&quot;&gt;
-    &lt;/constructor-arg&gt;
-    &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;
-    &lt;/constructor-arg&gt;
-    &lt;!-- type用于确定当调用相同参数位置 ，但类型不同时调用哪个构造函数 --&gt;
-    &lt;constructor-arg name=&quot;name&quot; value=&quot;999&quot; index=&quot;0&quot; type=&quot;java.lang.Integer&quot;&gt;
-    &lt;/constructor-arg&gt;
-    &lt;constructor-arg name=&quot;car&quot; ref=&quot;car&quot; index=&quot;1&quot;&gt;
-    &lt;/constructor-arg&gt;
-&lt;/bean&gt;</code></pre>
-<hr>
-<ol start="3">
-<li>p名称空间注入</li>
-</ol>
-<pre><code class="xml">    &lt;!-- p名称空间注入, 走set方法
-        1.导入P名称空间 xmlns:p=&quot;http://www.springframework.org/schema/p&quot; 
-        2.使用p:属性完成注入 |-值类型: p:属性名=&quot;值&quot; |-对象类型: p:属性名-ref=&quot;bean名称&quot;
-     --&gt;
-    &lt;bean name=&quot;user3&quot; class=&quot;cn.itcast.bean.User&quot; p:name=&quot;jack&quot;
-        p:age=&quot;20&quot; p:car-ref=&quot;car&quot;&gt;
-    &lt;/bean&gt;</code></pre>
-<hr>
-<ol start="4">
-<li>spel注入</li>
-</ol>
-<pre><code class="xml">&lt;!-- 
-        spel注入: spring Expression Language sping表达式语言
- --&gt;
-     &lt;bean name=&quot;user4&quot; class=&quot;cn.itcast.bean.User&quot;&gt;
-        &lt;property name=&quot;name&quot; value=&quot;#{user.name}&quot;&gt;&lt;/property&gt;
-        &lt;property name=&quot;age&quot; value=&quot;#{user3.age}&quot;&gt;&lt;/property&gt;
-        &lt;property name=&quot;car&quot; ref=&quot;car&quot;&gt;&lt;/property&gt;
-    &lt;/bean&gt;</code></pre>
-<hr>
-<ol start="5">
-<li>复杂类型的注入</li>
-</ol>
-<pre><code class="xml">&lt;!-- 复杂类型注入 --&gt;
-&lt;bean name=&quot;cb&quot; class=&quot;cn.itcast.c_injection.CollectionBean&quot; &gt;
-    &lt;!-- 如果数组中只准备注入一个值(对象),直接使用value|ref即可 
-    &lt;property name=&quot;arr&quot; value=&quot;tom&quot; &gt;&lt;/property&gt;
-    --&gt;
-    &lt;!-- array注入,多个元素注入 --&gt;
-    &lt;property name=&quot;arr&quot;&gt;
-        &lt;array&gt;
-            &lt;value&gt;tom&lt;/value&gt;
-            &lt;value&gt;jerry&lt;/value&gt;
-            &lt;ref bean=&quot;user4&quot; /&gt;
-        &lt;/array&gt;
-    &lt;/property&gt;
-
-    &lt;!-- 如果List中只准备注入一个值(对象),直接使用value|ref即可 
-    &lt;property name=&quot;list&quot; value=&quot;jack&quot; &gt;&lt;/property&gt;--&gt;
-    &lt;property name=&quot;list&quot;  &gt;
-        &lt;list&gt;
-            &lt;value&gt;jack&lt;/value&gt;
-            &lt;value&gt;rose&lt;/value&gt;
-            &lt;ref bean=&quot;user3&quot; /&gt;
-        &lt;/list&gt;
-    &lt;/property&gt;
-
-    &lt;!-- map类型注入 --&gt;
-    &lt;property name=&quot;map&quot;  &gt;
-        &lt;map&gt;
-            &lt;entry key=&quot;url&quot; value=&quot;jdbc:mysql:///crm&quot; &gt;&lt;/entry&gt;
-            &lt;entry key=&quot;user&quot; value-ref=&quot;user4&quot;  &gt;&lt;/entry&gt;
-            &lt;entry key-ref=&quot;user3&quot; value-ref=&quot;user2&quot;  &gt;&lt;/entry&gt;
-        &lt;/map&gt; 
-    &lt;/property&gt;
-
-    &lt;!-- prperties 类型注入 --&gt;
-    &lt;property name=&quot;prop&quot;  &gt;
-        &lt;props&gt;
-            &lt;prop key=&quot;driverClass&quot;&gt;com.jdbc.mysql.Driver&lt;/prop&gt;
-            &lt;prop key=&quot;userName&quot;&gt;root&lt;/prop&gt;
-            &lt;prop key=&quot;password&quot;&gt;1234&lt;/prop&gt;
-        &lt;/props&gt;
-    &lt;/property&gt;</code></pre>
+<p>静态代码块的典型用途：<br>&emsp;用来一次性的对静态成员变量进行赋值</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 516802581@qq.com </span>
@@ -623,12 +469,12 @@ scope=&quot;prototype&quot; init-method=&quot;init&quot; destroy-method=&quot;de
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Spring的基本配置及注入方式</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.5k</span></p>
+    <p><span class="copy-title">文章标题:</span>static关键字和final关键字</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">685</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-03-23, 15:13:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-27, 10:22:18</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/03/23/Spring%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F/" title="Spring的基本配置及注入方式">http://yoursite.com/2020/03/23/Spring%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F/</a>
+    <p><span class="copy-title">发布时间:</span>2020-04-02, 18:34:47</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-02, 14:21:26</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/02/%E8%AE%B2%E8%AE%B2%20static%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%20final%20%E5%85%B3%E9%94%AE%E5%AD%97/" title="static关键字和final关键字">http://yoursite.com/2020/04/02/%E8%AE%B2%E8%AE%B2%20static%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%20final%20%E5%85%B3%E9%94%AE%E5%AD%97/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
