@@ -391,12 +391,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-04-03 15:35:38'>2020-04-03 15:17</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-03 15:38:04'>2020-04-03 15:17</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:358</span>
+        <span>字数:359</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -443,7 +443,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="SapringMVC接收前台传来的参数-："><a href="#SapringMVC接收前台传来的参数-：" class="headerlink" title="SapringMVC接收前台传来的参数 ："></a>SapringMVC接收前台传来的参数 ：</h2><ol>
-<li>参数绑定在url请求结尾<br>如： <code>http://localhost:8080/springmvc/getUserInfo?userId=10086</code><br>使用 @RequestParam注解来识别并绑定到方法的入参上<pre><code>public ModelAndView getUserById(@RequestParam(&quot;userId&quot;) Integer userid){}</code></pre></li>
+<li>参数绑定在url请求结尾<br>如： <code>http://localhost:8080/springmvc/getUserInfo?userId=10086</code><br>使用 @RequestParam注解来识别并绑定到方法的入参上</li>
+</ol>
+<pre><code>public ModelAndView getUserById(@RequestParam(&quot;userId&quot;) Integer userid){}</code></pre><ol start="2">
 <li>在controller中使用RestFul风格的请求，如@RequestMapping(“/getUserInfo/{userId}”)，那么就要使用@PathVariable注解来绑定参数到方法入参了。</li>
 </ol>
 <pre><code>@RequestMapping(&quot;/getUserInfo/{userId}&quot;)
@@ -452,15 +454,15 @@ public ModelAndView getUserById(@PathVariable(&quot;userId&quot;) Integer userid
 </ol>
 <pre><code>data: {&#39;userName&#39;: loginname, &#39;password&#39;:password, tm: new Date().getTime(), &#39;logintype&#39;: &#39;form&#39;},
 </code></pre><ol start="4">
-<li>如果是表单提交<pre><code>&lt;body&gt;
-  &lt;form id=&quot;form&quot; name=&quot;mainform&quot; method=&quot;get&quot; action=&quot;http://localhost:8080/ssm/getUserInfo&quot;&gt;
-     用户：&lt;input type=&quot;text&quot; name=&quot;userName&quot; id=&quot;userName&quot;/&gt;
-     密码：&lt;input type=&quot;password&quot; name=&quot;pawssword&quot; id=&quot;pawssword&quot;/&gt;
-     input:&lt;input type=&quot;submit&quot;/&gt;
-  &lt;/form&gt;
-&lt;/body&gt;</code></pre></li>
+<li>如果是表单提交</li>
 </ol>
-<p>&emsp;&emsp;&emsp;a. 将参数直接作为controller方法的入参传入<br>&emsp;&emsp;&emsp;&emsp;i. 参数名跟Controller方法的参数名一致:</p>
+<pre><code>&lt;body&gt;
+     &lt;form id=&quot;form&quot; name=&quot;mainform&quot; method=&quot;get&quot; action=&quot;http://localhost:8080/ssm/getUserInfo&quot;&gt;
+        用户：&lt;input type=&quot;text&quot; name=&quot;userName&quot; id=&quot;userName&quot;/&gt;
+        密码：&lt;input type=&quot;password&quot; name=&quot;pawssword&quot; id=&quot;pawssword&quot;/&gt;
+        input:&lt;input type=&quot;submit&quot;/&gt;
+     &lt;/form&gt;
+&lt;/body&gt;</code></pre><p>&emsp;&emsp;&emsp;a. 将参数直接作为controller方法的入参传入<br>&emsp;&emsp;&emsp;&emsp;i. 参数名跟Controller方法的参数名一致:</p>
 <pre><code>@RequestMapping(&quot;/getUserInfo&quot;)
 public ModelAndView getUserById(String userName, String password){}</code></pre><p>&emsp;&emsp;&emsp;&emsp;ii.  参数名跟Controller方法的参数名不一致，可以借助@RequestParam注解</p>
 <pre><code>RequestMapping(&quot;/getUserInfo&quot;)
@@ -482,10 +484,10 @@ public ModelAndView getUserById(User user){
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>SpringMVC参数的接收及RestFul</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">358</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">359</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
     <p><span class="copy-title">发布时间:</span>2020-04-03, 15:17:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-03, 15:35:38</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-03, 15:38:04</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/03/SpringMVC%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0/" title="SpringMVC参数的接收及RestFul">http://yoursite.com/2020/04/03/SpringMVC%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
