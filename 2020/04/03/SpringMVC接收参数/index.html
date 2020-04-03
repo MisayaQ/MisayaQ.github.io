@@ -391,7 +391,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-04-03 15:30:59'>2020-04-03 15:17</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-03 15:35:38'>2020-04-03 15:17</time>
         
     </div>
     <div class="article-meta">
@@ -443,39 +443,32 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="SapringMVC接收前台传来的参数-："><a href="#SapringMVC接收前台传来的参数-：" class="headerlink" title="SapringMVC接收前台传来的参数 ："></a>SapringMVC接收前台传来的参数 ：</h2><ol>
-<li>参数绑定在url请求结尾<br>如： <code>http://localhost:8080/springmvc/getUserInfo?userId=10086</code><br>使用 @RequestParam注解来识别并绑定到方法的入参上<pre><code class="java">public ModelAndView getUserById(@RequestParam(&quot;userId&quot;) Integer userid){}</code></pre>
-</li>
+<li>参数绑定在url请求结尾<br>如： <code>http://localhost:8080/springmvc/getUserInfo?userId=10086</code><br>使用 @RequestParam注解来识别并绑定到方法的入参上<pre><code>public ModelAndView getUserById(@RequestParam(&quot;userId&quot;) Integer userid){}</code></pre></li>
 <li>在controller中使用RestFul风格的请求，如@RequestMapping(“/getUserInfo/{userId}”)，那么就要使用@PathVariable注解来绑定参数到方法入参了。</li>
 </ol>
-<pre><code class="java">@RequestMapping(&quot;/getUserInfo/{userId}&quot;)
-public ModelAndView getUserById(@PathVariable(&quot;userId&quot;) Integer userid){}</code></pre>
-<ol start="3">
+<pre><code>@RequestMapping(&quot;/getUserInfo/{userId}&quot;)
+public ModelAndView getUserById(@PathVariable(&quot;userId&quot;) Integer userid){}</code></pre><ol start="3">
 <li>如果是ajax请求，data中的参数要和对象的属性名一致</li>
 </ol>
-<pre><code class="java">data: {&#39;userName&#39;: loginname, &#39;password&#39;:password, tm: new Date().getTime(), &#39;logintype&#39;: &#39;form&#39;},
-</code></pre>
-<ol start="4">
-<li>如果是表单提交<pre><code class="html">&lt;body&gt;
+<pre><code>data: {&#39;userName&#39;: loginname, &#39;password&#39;:password, tm: new Date().getTime(), &#39;logintype&#39;: &#39;form&#39;},
+</code></pre><ol start="4">
+<li>如果是表单提交<pre><code>&lt;body&gt;
   &lt;form id=&quot;form&quot; name=&quot;mainform&quot; method=&quot;get&quot; action=&quot;http://localhost:8080/ssm/getUserInfo&quot;&gt;
      用户：&lt;input type=&quot;text&quot; name=&quot;userName&quot; id=&quot;userName&quot;/&gt;
      密码：&lt;input type=&quot;password&quot; name=&quot;pawssword&quot; id=&quot;pawssword&quot;/&gt;
      input:&lt;input type=&quot;submit&quot;/&gt;
   &lt;/form&gt;
-&lt;/body&gt;</code></pre>
-</li>
+&lt;/body&gt;</code></pre></li>
 </ol>
 <p>&emsp;&emsp;&emsp;a. 将参数直接作为controller方法的入参传入<br>&emsp;&emsp;&emsp;&emsp;i. 参数名跟Controller方法的参数名一致:</p>
-<pre><code class="java">@RequestMapping(&quot;/getUserInfo&quot;)
-public ModelAndView getUserById(String userName, String password){}</code></pre>
-<p>&emsp;&emsp;&emsp;&emsp;ii.  参数名跟Controller方法的参数名不一致，可以借助@RequestParam注解</p>
-<pre><code class="java">RequestMapping(&quot;/getUserInfo&quot;)
-public ModelAndView getUserById(@RequestParam(&quot;userName&quot;) String name, String password){}</code></pre>
-<p>&emsp;&emsp;&emsp;b. 用对象来接收，只要传递的参数名和对象的属性名一致即可</p>
-<pre><code class="java">@RequestMapping(&quot;/getUserInfo&quot;)
+<pre><code>@RequestMapping(&quot;/getUserInfo&quot;)
+public ModelAndView getUserById(String userName, String password){}</code></pre><p>&emsp;&emsp;&emsp;&emsp;ii.  参数名跟Controller方法的参数名不一致，可以借助@RequestParam注解</p>
+<pre><code>RequestMapping(&quot;/getUserInfo&quot;)
+public ModelAndView getUserById(@RequestParam(&quot;userName&quot;) String name, String password){}</code></pre><p>&emsp;&emsp;&emsp;b. 用对象来接收，只要传递的参数名和对象的属性名一致即可</p>
+<pre><code>@RequestMapping(&quot;/getUserInfo&quot;)
 public ModelAndView getUserById(User user){
     Sysout.println(user.getUserName()+&quot;:&quot;user.getPassword());
 }</code></pre>
-
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 516802581@qq.com </span>
     </div>
@@ -492,7 +485,7 @@ public ModelAndView getUserById(User user){
     <p><span class="copy-title">文章字数:</span><span class="post-count">358</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
     <p><span class="copy-title">发布时间:</span>2020-04-03, 15:17:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-03, 15:30:59</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-03, 15:35:38</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/03/SpringMVC%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0/" title="SpringMVC参数的接收及RestFul">http://yoursite.com/2020/04/03/SpringMVC%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
