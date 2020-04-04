@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>类和对象的区别 | 家岐的技术博客</title>
+  <title>接口和抽象类的区别及何时使用 | 家岐的技术博客</title>
   <meta name="keywords" content=" 每天一道面试题 ">
-  <meta name="description" content="类和对象的区别 | 家岐的技术博客">
+  <meta name="description" content="接口和抽象类的区别及何时使用 | 家岐的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介刘家岐 目前大三，从事java的学习，寻找实习中 喜欢研究新兴技术和未来发展方向。  联系方式：  QQ:516802581  邮箱：516802581@qq.com">
 <meta property="og:type" content="website">
@@ -375,9 +375,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-类和对象的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-接口和抽象类的使用和区别" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">类和对象的区别</h1>
+        <h1 class="article-title">接口和抽象类的区别及何时使用</h1>
     
     <div class="article-meta">
         
@@ -399,12 +399,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-04-02 17:01:09'>2020-04-01 18:34</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-04 16:49:19'>2020-04-03 15:17</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:339</span>
+        <span>字数:525</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -434,7 +434,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类和对象的区别？"><span class="toc-text">类和对象的区别？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#接口和抽象类的区别"><span class="toc-text">接口和抽象类的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么时候用接口，什么时候用抽象类："><span class="toc-text">什么时候用接口，什么时候用抽象类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口可以继承接口吗："><span class="toc-text">接口可以继承接口吗：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -450,13 +450,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="类和对象的区别？"><a href="#类和对象的区别？" class="headerlink" title="类和对象的区别？"></a>类和对象的区别？</h2><p>类的概念：<br>&nbsp;&nbsp;&nbsp;&nbsp;类是具有相同属性和服务的一组对象集合。它为属于该类的所有对象提供了统一的抽象描述，其内部包括<font color=red>属性</font>和<font color=red>服务</font>两个主要部分。<br>对象的概念：<br>&nbsp;&nbsp;&nbsp;&nbsp;对象是系统中用来描述客观事物的一个实体，它是构成系统的一个基本单位。一个对象由一组属性和对这组属性进行操作的一组服务组成。  </p>
-<p>区别：</p>
+        <h3 id="接口和抽象类的区别"><a href="#接口和抽象类的区别" class="headerlink" title="接口和抽象类的区别"></a>接口和抽象类的区别</h3><ol>
+<li>接口只有定义，不能有方法的实现，java 1.8中可以定义default方法体，而抽象类可以有定义与实现，方法可在抽象类中实现。</li>
+<li>实现接口的关键字为implements，继承抽象类的关键字为extends。一个类可以实现多个接口，但一个类只能继承一个抽象类。所以，使用接口可以间接地实现多重继承。</li>
+<li>接口强调特定功能的实现，而抽象类强调所属关系。</li>
+<li>接口成员变量默认为public static final，必须赋初值，不能被修改，抽象类中的变量可以是普通变量。</li>
+<li>接口没有构造方法，且方法都是抽象的，抽象类可以定义构造方法，可以有抽象方法和具体方法。</li>
+<li>权限修饰不同：抽象方法可以有public、protected和default这些修饰符，接口方法只能是public（java9有了私有方法） ;</li>
+<li>抽象类主要用来抽象类别，接口主要用来抽象功能。<br><img src="https://upload-images.jianshu.io/upload_images/1870221-cc52092cc8b11d0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200" alt="接口和抽象类的区别"><h3 id="什么时候用接口，什么时候用抽象类："><a href="#什么时候用接口，什么时候用抽象类：" class="headerlink" title="什么时候用接口，什么时候用抽象类："></a>什么时候用接口，什么时候用抽象类：</h3>&emsp;&emsp;当描述一组方法的时候使用接口  当描述一个虚拟的物体的时候使用抽象类。</li>
+</ol>
+<p>&emsp;&emsp;接口表示对象具有某种特性，是对对象特性的定义（has）。抽象类表示对某类对象行为的抽象（is）。</p>
+<p>&emsp;&emsp;比如人相对于男人，小孩，女人就是is，那么就应该是抽象类，因为他们都是人，有人所有的特点。而可行动相对于人，汽车，飞机就是has，那么就是接口，因为他们有这样的功能，但不具有is的特征。</p>
+<h3 id="接口可以继承接口吗："><a href="#接口可以继承接口吗：" class="headerlink" title="接口可以继承接口吗："></a>接口可以继承接口吗：</h3><p>&emsp;&emsp;口与接口之间是多继承的。</p>
+<p>注意事项：</p>
 <ol>
-<li>类是一个抽象的概念，它不存在于现实中的时间/空间里，类只是为所有的对象定义了抽象的属性与行为。就好像“Person（人）”这个类，它虽然可以包含很多个体，但它本身不存在于现实世界上。</li>
-<li>对象是类的一个具体。它是一个实实在在存在的东西。</li>
-<li>类是一个静态的概念，类本身不携带任何数据。当没有为类创建任何对象时，类本身不存在于内存空间中。</li>
-<li>对象是一个动态的概念。每一个对象都存在着有别于其它对象的属于自己的独特的属性和行为。对象的属性可以随着它自己的行为而发生改变。</li>
+<li>多个父接口当中的抽象方法如果重复，没关系</li>
+<li>多个父接口当中的默认方法如果重复，那么子接口必须进行默认方法的重写，【而且要带着default关键字】</li>
 </ol>
 
       
@@ -471,12 +480,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>类和对象的区别</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">339</span></p>
+    <p><span class="copy-title">文章标题:</span>接口和抽象类的区别及何时使用</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">525</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-04-01, 18:34:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-02, 17:01:09</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/01/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/" title="类和对象的区别">http://yoursite.com/2020/04/01/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/</a>
+    <p><span class="copy-title">发布时间:</span>2020-04-03, 15:17:47</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-04, 16:49:19</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/03/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/" title="接口和抽象类的区别及何时使用">http://yoursite.com/2020/04/03/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
