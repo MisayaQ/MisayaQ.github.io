@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>关于Object类</title>
+      <link href="/2020/04/05/%E5%85%B3%E4%BA%8EObject%E7%B1%BB/"/>
+      <url>/2020/04/05/%E5%85%B3%E4%BA%8EObject%E7%B1%BB/</url>
+      
+        <content type="html"><![CDATA[<h3 id="关于Object类："><a href="#关于Object类：" class="headerlink" title="关于Object类："></a>关于Object类：</h3><p>所有的Java对象都隐式地继承了Object对象(不用显示写extends继承)，所有的Java对象都拥有Object默认的方法。</p><ol><li><p>Object()：<br>这个没什么可说的，Object类的构造方法。(非重点) </p></li><li><p>registerNatives()：<br>为了使JVM发现本机功能，他们被一定的方式命名。例如，对于java.lang.Object.registerNatives，对应的C函数命名为Java_java_lang_Object_registerNatives。<br>通过使用registerNatives（或者更确切地说，JNI函数RegisterNatives），可以命名任何你想要你的C函数。(非重点)</p></li><li><p>clone()：<br>clone()函数的用途是用来另存一个当前存在的对象。只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常。（注意：回答这里时可能会引出设计模式的提问）</p></li><li><p>getClass()：<br>final方法，用于获得运行时的类型。该方法返回的是此Object对象的类对象/运行时类对象Class。效果与Object.class相同。（注意：回答这里时可能会引出类加载，反射等知识点的提问）</p></li><li><p>equals()：<br>equals用来比较两个对象的内容是否相等。默认情况下(继承自Object类)，equals和”= =”是一样的，除非被覆写(override)了。（注意：这里可能引出更常问的“equals与”= =”的区别”及hashmap实现原理的提问）</p></li><li><p>hashCode()：<br>该方法用来返回其所在对象的物理地址（哈希码值），常会和equals方法同时重写，确保相等的两个对象拥有相等的hashCode。（同样，可能引出hashmap实现原理的提问）</p></li><li><p>toString()：<br>toString()方法返回该对象的字符串表示，这个方法没什么可说的。</p></li><li><p>wait()：<br>导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法。（引出线程通信及“wait和sleep的区别”的提问）</p></li><li><p>wait(long timeout)：<br>导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者超过指定的时间量。（引出线程通信及“wait和sleep的区别”的提问）</p></li><li><p>wait(long timeout, int nanos)：<br>导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者其他某个线程中断当前线程，或者已超过某个实际时间量。（引出线程通信及“wait和sleep的区别”的提问）</p></li><li><p>notify()：<br>唤醒在此对象监视器上等待的单个线程。（引出线程通信的提问）</p></li><li><p>notifyAll()：<br>唤醒在此对象监视器上等待的所有线程。（引出线程通信的提问）</p></li><li><p>finalize()：<br>当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。（非重点，但小心引出垃圾回收的提问）</p></li></ol><h3 id="为什么重写了equals就必须重写hashCode："><a href="#为什么重写了equals就必须重写hashCode：" class="headerlink" title="为什么重写了equals就必须重写hashCode："></a>为什么重写了equals就必须重写hashCode：</h3><h4 id="以下是关于hashcode的规则："><a href="#以下是关于hashcode的规则：" class="headerlink" title="以下是关于hashcode的规则："></a>以下是关于hashcode的规则：</h4><p>&emsp;&emsp;两个对象equals相等，hashcode一定相等，两个对象equals不等，hashcode不一定不等。<br>&emsp;&emsp;hashcode相等，两个对象equals不一定相等，hashcode不等，两个对象equals一定不等。  </p><p>假如现在有两个Student对象：</p><pre><code class="java">    Student s1=new Student(&quot;小明&quot;,18);    Student s2=new Student(&quot;小明&quot;,18);</code></pre><p>&emsp;&emsp;假如只重写equals而不重写hashcode，那么Student 类的hashcode方法就是Object默认的hashcode方法，由于默认的hashcode方法是根据对象的内存地址经哈希算法得来的，显然此时 s1!=s2 ,故两者的hashcode不一定相等。<br>&emsp;&emsp;然而重写了equals，且s1.equals(s2)返回true，根据hashcode的规则，两个对象相等其哈希值一定相等，所以矛盾就产生了，因此重写equals一定要重写hashcod</p><h3 id="wait-方法与sleep-方法的区别："><a href="#wait-方法与sleep-方法的区别：" class="headerlink" title="wait()方法与sleep()方法的区别："></a>wait()方法与sleep()方法的区别：</h3><p>&emsp;&emsp;Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权。<br>主要的区别在于    Object.wait()在释放CPU同时，释放了对象锁的控制，而Thread.sleep()没有对锁释放</p><h3 id="wait-notify-方法使用讲解："><a href="#wait-notify-方法使用讲解：" class="headerlink" title="wait() notify()方法使用讲解："></a>wait() notify()方法使用讲解：</h3><p>   &emsp;&emsp;wait()方法与notify()必须要与synchronized(resource)一起使用。也就是wait与notify针对已经获取了resource锁的线程进行操作，从语法角度来说就是   Obj.wait( ),Obj.notify( )必须在synchronized(Obj){…}语句块内。从功能上来说wait( )线程在获取对象锁后，主动释放CPU控制权，主动释放对象锁，同时本线程休眠。直到有其它线程调用对象的notify()唤醒该线程，才能继续获取对象锁，并继续执行。相应的notify()就是对对象锁的释放操作。【<strong>因此，我们可以发现，wait和notify方法均可释放对象的锁，但wait同时释放CPU控制权，即它后面的代码停止执行，线程进入阻塞状态，notify方法调用后，被唤醒的线程不会立马获得到锁对象。而是等待notify的synchronized代码块执行完之后才会获得锁对象</strong>】<br>&emsp;&emsp;释放锁后，JVM会在等待resoure的线程中选取一线程，赋予其对象锁，唤醒线程，继续执行。这样就提供了在线程间同步、唤醒的操作。Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制，而在同步块中的Thread.sleep()方法并不释放锁，仅释放CPU控制权。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 每天一道面试题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>接口和抽象类的区别及何时使用</title>
       <link href="/2020/04/04/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/"/>
       <url>/2020/04/04/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%8C%BA%E5%88%AB/</url>

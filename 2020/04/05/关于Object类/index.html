@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>static关键字和final关键字 | 家岐的技术博客</title>
+  <title>关于Object类 | 家岐的技术博客</title>
   <meta name="keywords" content=" 每天一道面试题 ">
-  <meta name="description" content="static关键字和final关键字 | 家岐的技术博客">
+  <meta name="description" content="关于Object类 | 家岐的技术博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="个人简介刘家岐 目前大三，从事java的学习，寻找实习中 喜欢研究新兴技术和未来发展方向。  联系方式：  QQ:516802581  邮箱：516802581@qq.com">
 <meta property="og:type" content="website">
@@ -383,9 +383,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-讲讲 static 关键字和 final 关键字" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-关于Object类" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">static关键字和final关键字</h1>
+        <h1 class="article-title">关于Object类</h1>
     
     <div class="article-meta">
         
@@ -407,12 +407,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-04-02 14:55:31'>2020-04-02 14:34</time>
+        创建时间:<time class="date" title='更新时间: 2020-04-06 13:50:32'>2020-04-05 13:42</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:688</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -442,7 +442,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#final关键字："><span class="toc-text">final关键字：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static关键字："><span class="toc-text">static关键字：</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于Object类："><span class="toc-text">关于Object类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么重写了equals就必须重写hashCode："><span class="toc-text">为什么重写了equals就必须重写hashCode：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#以下是关于hashcode的规则："><span class="toc-text">以下是关于hashcode的规则：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait-方法与sleep-方法的区别："><span class="toc-text">wait()方法与sleep()方法的区别：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait-notify-方法使用讲解："><span class="toc-text">wait() notify()方法使用讲解：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -458,35 +458,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="final关键字："><a href="#final关键字：" class="headerlink" title="final关键字："></a>final关键字：</h2><ol>
-<li>final修饰的类不可以被继承</li>
-<li>final修饰的方法不能被子类重写，但是可以被继承。</li>
-<li>final修饰的的变量不能被修改<br>基本数据类型：值不能被修改<br>引用数据类型：对象，数组本身可以修改，但是指向该对象的地址值引用不能被修改。（java中的引用数据类型有3种:类class,数组array,接口interface）<br>类的成员变量：则必须当场赋值，否则编译会报错。<br>好处：</li>
-<li>为方法上锁，当定义方法不想被子类修改时可以采取此方法。</li>
-<li>提高执行效率，编译器加载内嵌机制。</li>
-</ol>
-<h2 id="static关键字："><a href="#static关键字：" class="headerlink" title="static关键字："></a>static关键字：</h2><ol>
-<li>被static修饰的变量/方法属于类变量/类方法，可以通过类名.变量名/类名.方法名直接引用，不需要new出来一个类来。  </li>
-<li>static关键字修饰变量时，会使该变量在类加载时就会被初始化，不会因为对象的创建再次被加载，当变量static修饰时就代表该变量只会被初始化一次。JVM只为静态分配一次内存，在加载类的过程中完成静态变量的内存分配，可用类名直接访问（方便），当然也可以通过对象来访问（但是这是不推荐的）。</li>
-</ol>
-<p>好处：</p>
+        <h3 id="关于Object类："><a href="#关于Object类：" class="headerlink" title="关于Object类："></a>关于Object类：</h3><p>所有的Java对象都隐式地继承了Object对象(不用显示写extends继承)，所有的Java对象都拥有Object默认的方法。</p>
 <ol>
-<li>不同的类有自己的静态资源，这可以实现静态资源分类。比如和数学相关的静态资源放在java.lang.Math中，和日历相关的静态资源放在java.util.Calendar中，这样就很清晰了</li>
-<li>避免重名。不同的类之间有重名的静态变量名、静态方法名也是很正常的，如果所有的都放在一起不可避免的一个问题就是名字重复，这时候怎么办？分类放置就好了。</li>
-<li>避免静态资源类无限膨胀。</li>
+<li><p>Object()：<br>这个没什么可说的，Object类的构造方法。(非重点) </p>
+</li>
+<li><p>registerNatives()：<br>为了使JVM发现本机功能，他们被一定的方式命名。例如，对于java.lang.Object.registerNatives，对应的C函数命名为Java_java_lang_Object_registerNatives。<br>通过使用registerNatives（或者更确切地说，JNI函数RegisterNatives），可以命名任何你想要你的C函数。(非重点)</p>
+</li>
+<li><p>clone()：<br>clone()函数的用途是用来另存一个当前存在的对象。只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常。（注意：回答这里时可能会引出设计模式的提问）</p>
+</li>
+<li><p>getClass()：<br>final方法，用于获得运行时的类型。该方法返回的是此Object对象的类对象/运行时类对象Class。效果与Object.class相同。（注意：回答这里时可能会引出类加载，反射等知识点的提问）</p>
+</li>
+<li><p>equals()：<br>equals用来比较两个对象的内容是否相等。默认情况下(继承自Object类)，equals和”= =”是一样的，除非被覆写(override)了。（注意：这里可能引出更常问的“equals与”= =”的区别”及hashmap实现原理的提问）</p>
+</li>
+<li><p>hashCode()：<br>该方法用来返回其所在对象的物理地址（哈希码值），常会和equals方法同时重写，确保相等的两个对象拥有相等的hashCode。（同样，可能引出hashmap实现原理的提问）</p>
+</li>
+<li><p>toString()：<br>toString()方法返回该对象的字符串表示，这个方法没什么可说的。</p>
+</li>
+<li><p>wait()：<br>导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法。（引出线程通信及“wait和sleep的区别”的提问）</p>
+</li>
+<li><p>wait(long timeout)：<br>导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者超过指定的时间量。（引出线程通信及“wait和sleep的区别”的提问）</p>
+</li>
+<li><p>wait(long timeout, int nanos)：<br>导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者其他某个线程中断当前线程，或者已超过某个实际时间量。（引出线程通信及“wait和sleep的区别”的提问）</p>
+</li>
+<li><p>notify()：<br>唤醒在此对象监视器上等待的单个线程。（引出线程通信的提问）</p>
+</li>
+<li><p>notifyAll()：<br>唤醒在此对象监视器上等待的所有线程。（引出线程通信的提问）</p>
+</li>
+<li><p>finalize()：<br>当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。（非重点，但小心引出垃圾回收的提问）</p>
+</li>
 </ol>
-<p>注意事项：</p>
-<ol>
-<li>静态不能访问非静态<br>&emsp;因为在内存当中是先有静态内容，后有非静态内容。</li>
-<li>静态方法当中不能用this<br>&emsp;this代表当前对象，通过谁调用的方法，谁就是当前对象，而static静态资源由类直接访问。</li>
-</ol>
-<p>静态代码块：<br>特点:</p>
-<ol>
-<li>当第一次用到本类时，静态代码块执行唯一的一次。</li>
-<li>静态内容总是优先于非静态，所以静态代码块比构造方法先执行。</li>
-<li>静态代码块是严格按照父类静态代码块-&gt;子类静态代码块的顺序加载的，且只加载一次。</li>
-</ol>
-<p>静态代码块的典型用途：<br>&emsp;用来一次性的对静态成员变量进行赋值</p>
+<h3 id="为什么重写了equals就必须重写hashCode："><a href="#为什么重写了equals就必须重写hashCode：" class="headerlink" title="为什么重写了equals就必须重写hashCode："></a>为什么重写了equals就必须重写hashCode：</h3><h4 id="以下是关于hashcode的规则："><a href="#以下是关于hashcode的规则：" class="headerlink" title="以下是关于hashcode的规则："></a>以下是关于hashcode的规则：</h4><p>&emsp;&emsp;两个对象equals相等，hashcode一定相等，两个对象equals不等，hashcode不一定不等。<br>&emsp;&emsp;hashcode相等，两个对象equals不一定相等，hashcode不等，两个对象equals一定不等。  </p>
+<p>假如现在有两个Student对象：</p>
+<pre><code class="java">    Student s1=new Student(&quot;小明&quot;,18);
+    Student s2=new Student(&quot;小明&quot;,18);</code></pre>
+<p>&emsp;&emsp;假如只重写equals而不重写hashcode，那么Student 类的hashcode方法就是Object默认的hashcode方法，由于默认的hashcode方法是根据对象的内存地址经哈希算法得来的，显然此时 s1!=s2 ,故两者的hashcode不一定相等。<br>&emsp;&emsp;然而重写了equals，且s1.equals(s2)返回true，根据hashcode的规则，两个对象相等其哈希值一定相等，所以矛盾就产生了，因此重写equals一定要重写hashcod</p>
+<h3 id="wait-方法与sleep-方法的区别："><a href="#wait-方法与sleep-方法的区别：" class="headerlink" title="wait()方法与sleep()方法的区别："></a>wait()方法与sleep()方法的区别：</h3><p>&emsp;&emsp;Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权。<br>主要的区别在于    Object.wait()在释放CPU同时，释放了对象锁的控制，而Thread.sleep()没有对锁释放</p>
+<h3 id="wait-notify-方法使用讲解："><a href="#wait-notify-方法使用讲解：" class="headerlink" title="wait() notify()方法使用讲解："></a>wait() notify()方法使用讲解：</h3><p>   &emsp;&emsp;wait()方法与notify()必须要与synchronized(resource)一起使用。也就是wait与notify针对已经获取了resource锁的线程进行操作，从语法角度来说就是   Obj.wait( ),Obj.notify( )必须在synchronized(Obj){…}语句块内。从功能上来说wait( )线程在获取对象锁后，主动释放CPU控制权，主动释放对象锁，同时本线程休眠。直到有其它线程调用对象的notify()唤醒该线程，才能继续获取对象锁，并继续执行。相应的notify()就是对对象锁的释放操作。【<strong>因此，我们可以发现，wait和notify方法均可释放对象的锁，但wait同时释放CPU控制权，即它后面的代码停止执行，线程进入阻塞状态，notify方法调用后，被唤醒的线程不会立马获得到锁对象。而是等待notify的synchronized代码块执行完之后才会获得锁对象</strong>】<br>&emsp;&emsp;释放锁后，JVM会在等待resoure的线程中选取一线程，赋予其对象锁，唤醒线程，继续执行。这样就提供了在线程间同步、唤醒的操作。Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制，而在同步块中的Thread.sleep()方法并不释放锁，仅释放CPU控制权。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 516802581@qq.com </span>
@@ -500,12 +507,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>static关键字和final关键字</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">688</span></p>
+    <p><span class="copy-title">文章标题:</span>关于Object类</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="夜雨声烦">夜雨声烦</a></p>
-    <p><span class="copy-title">发布时间:</span>2020-04-02, 14:34:47</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-02, 14:55:31</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/02/%E8%AE%B2%E8%AE%B2%20static%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%20final%20%E5%85%B3%E9%94%AE%E5%AD%97/" title="static关键字和final关键字">http://yoursite.com/2020/04/02/%E8%AE%B2%E8%AE%B2%20static%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%20final%20%E5%85%B3%E9%94%AE%E5%AD%97/</a>
+    <p><span class="copy-title">发布时间:</span>2020-04-05, 13:42:47</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-06, 13:50:32</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/04/05/%E5%85%B3%E4%BA%8EObject%E7%B1%BB/" title="关于Object类">http://yoursite.com/2020/04/05/%E5%85%B3%E4%BA%8EObject%E7%B1%BB/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
